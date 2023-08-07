@@ -24,7 +24,7 @@ from scipy.ndimage.filters import gaussian_filter
 from scipy import ndimage
 
 #change working directory
-os.chdir(r'C:\Users\iluvs\OneDrive\Desktop\Cosmic ML\COSMIC-ML')
+os.chdir(r'COSMIC-ML')
 print(os.getcwd())
 export_loc = 'Synth Data v8.0/a' 
 Artifical_img_size = 1024
