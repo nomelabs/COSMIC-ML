@@ -1,0 +1,11 @@
+Total Cavities: 305 
+Average Cavity Size: 4.65 nm 
+Total Images: 2 
+Average Cavities Per Image: 152.5 
+
+Total True Positive Pixels: 243473.0 
+10.0% of all Database Pixels 
+Average BBox Size: 2.62 (Percent of Image) 
+
+Time To Generate Database: 195.0 seconds 
+Average time per Cavity: 0.639 seconds 

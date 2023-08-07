@@ -24,7 +24,7 @@ from scipy.ndimage.filters import gaussian_filter
 from scipy import ndimage
 
 #change working directory
-os.chdir("C:\\Users\\gabbr\\Google Drive (gbruno@umich.edu)\\Research\\Cavity Detection")
+os.chdir(r'C:\Users\iluvs\OneDrive\Desktop\Cosmic ML\COSMIC-ML')
 print(os.getcwd())
 export_loc = 'Synth Data v8.0/a' 
 Artifical_img_size = 1024
@@ -41,8 +41,8 @@ for folder in background_rez_fldrs:
         temp_art_scale = (len(temp_img)/Artifical_img_size) * float(temp_scale)
         #plt.imshow(temp_img,cmap='gray')
         #plt.show()
-        BackgroundsDF = BackgroundsDF.append({'Name':temp_back, 'Scale':temp_scale , 'Image':temp_img , 'Artifical Scale':temp_art_scale},ignore_index=True)
-
+        tempdf=pd.DataFrame([{'Name':temp_back, 'Scale':temp_scale , 'Image':temp_img , 'Artificial Scale':temp_art_scale}])
+        BackgroundsDF = pd.concat([BackgroundsDF,tempdf],ignore_index=True)
 SynthImgDF = pd.DataFrame(columns= ['Image Name','Resolution','Scale','Field of view (nm^2)','Total Cavities','Avg Size(nm)'])
     
 #input('y')    
@@ -63,7 +63,8 @@ for c in range(len(Table_defoc_paths)):
         temp_func = scipy.interpolate.interp1d(rhoList,temp_table,bounds_error=False,fill_value=temp_table[-1])
         temp_r0 = int(re.findall(r'\d+', Table_paths[d])[2])
         temp_Io_min = np.min(temp_table)
-        FunctionsDF = FunctionsDF.append({'defoc':temp_defoc,'r0':temp_r0 ,'I_min':temp_Io_min, 'Contrast Function':temp_func},ignore_index=True)
+        tempdf=pd.DataFrame([{'defoc':temp_defoc,'r0':temp_r0 ,'I_min':temp_Io_min, 'Contrast Function':temp_func}])
+        FunctionsDF = pd.concat([FunctionsDF,tempdf],ignore_index=True)
 BackgroundsDF = BackgroundsDF.sample(frac=1).reset_index(drop=True) #randomize backgrounds
 
 tz=timer()
@@ -577,8 +578,8 @@ while total_cavs < total_cavs_req:
         total_img_ant_pixels = sum(sum(cum_mask))
         Master_ant_pixels_list = np.append(Master_ant_pixels_list , total_img_ant_pixels)
 
-        BackgroundsDF = BackgroundsDF.append({'Name':temp_back, 'Scale':temp_scale , 'Image':temp_img , 'Artifical Scale':temp_art_scale},ignore_index=True)
-        SynthImgDF = SynthImgDF.append({'Image Name':temp_data_name , 'Resolution':Artifical_img_size , 'Scale':back_res , 'Field of view (nm^2)':back_fov , 'Total Cavities':len(annotations) , 'Avg Size(nm)':avg_cav_size} , ignore_index=True)
+        BackgroundsDF = pd.concat([BackgroundsDF,pd.DataFrame([{'Name':temp_back, 'Scale':temp_scale , 'Image':temp_img , 'Artificial Scale':temp_art_scale}])],ignore_index=True)
+        SynthImgDF = pd.concat([SynthImgDF,pd.DataFrame([{'Image Name':temp_data_name , 'Resolution':Artifical_img_size , 'Scale':back_res , 'Field of view (nm^2)':back_fov , 'Total Cavities':len(annotations) , 'Avg Size(nm)':avg_cav_size}])],ignore_index=True)
         
 
         print(str(iteration) +'-'+ background_name[33:]+' is done')
