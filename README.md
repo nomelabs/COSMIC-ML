@@ -1,1 +1,1 @@
-# COSMIC-ML
+# SIGMA-ML
