@@ -1,11 +1,11 @@
 # SIGMA-ML
 
-##Description
+## Description
 
-##Quick Start
+## Quick Start
 
-##Contact
+## Contact
 
-##License
+## License
 
-##Acknowledgements
+## Acknowledgements
